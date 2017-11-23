@@ -262,3 +262,24 @@ class IconFont(object):
 
         # Now return the image
         return pygame.image.fromstring(data, size, mode)
+
+class IconHandler(object):
+    def __init__(self,fonts):
+        self.fonts = {} # Set up our dictionary to hold the fonts
+        # if we have fonts loop through them all and add them to our dictionary
+        if fonts:
+            for font in fonts:
+                self.fonts[font['font']] = IconFont(css_file=font['css'],ttf_file=font['ttf'])
+        else:
+            print 'Need to initial with atleast one font'
+
+
+    def pygame_image(self, font, size=15, color='black', scale='auto'):
+        font, icon = font.split('-')
+        image = self.fonts[font].pygame_image(icon, size, color, scale)
+        return image
+
+    def get_image_raw(self, font,size=15, color='black', scale='auto'):
+        font, icon = font.split('-',1)
+        image = self.font[font].get_image(icon, size,color, scale)
+        return image
