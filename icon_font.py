@@ -275,7 +275,7 @@ class IconHandler(object):
 
 
     def pygame_image(self, font, size=15, color='black', scale='auto'):
-        font, icon = font.split('-')
+        font, icon = font.split('-',1)
         image = self.fonts[font].pygame_image(icon, size, color, scale)
         return image
 
