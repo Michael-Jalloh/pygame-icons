@@ -275,11 +275,20 @@ class IconHandler(object):
 
 
     def pygame_image(self, font, size=15, color='black', scale='auto'):
-        font, icon = font.split('-',1)
-        image = self.fonts[font].pygame_image(icon, size, color, scale)
+        try:
+            font, icon = font.split('-',1)
+            image = self.fonts[font].pygame_image(icon, size, color, scale)
+        except:
+            image = self.fonts['fontawesome'].pygame_image('unlink',size, color, scale)
         return image
+
 
     def get_image_raw(self, font,size=15, color='black', scale='auto'):
         font, icon = font.split('-',1)
         image = self.font[font].get_image(icon, size,color, scale)
         return image
+
+
+    def add_font(self, font):
+        self.fonts[font['font']] = IconFont(css_file=font['css'], ttf_file=font['ttf'])
+        
