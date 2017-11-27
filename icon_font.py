@@ -283,7 +283,7 @@ class IconHandler(object):
         return image
 
 
-    def get_image_raw(self, font,size=15, color='black', scale='auto'):
+    def pillow_image(self, font,size=15, color='black', scale='auto'):
         font, icon = font.split('-',1)
         image = self.font[font].get_image(icon, size,color, scale)
         return image
